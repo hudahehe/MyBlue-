@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>You've Got Mail 💌</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+
+    min-height: 100vh;
+
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.45), transparent 20%),
+        radial-gradient(circle at 80% 80%, rgba(255,255,255,.25), transparent 25%),
+        linear-gradient(135deg, #b8d9ef, #8fc1df 50%, #76afd2);
+
+    color: #173b56;
+
+    font-family: Georgia, serif;
+
+    overflow-x: hidden;
+
+    position: relative;
+}
+
+
+/* =========================================
+   STAR BACKGROUND
+========================================= */
+
+body::before {
+
+    content: "✦   ✧      ⋆   ✦       ✧   ⋆      ✦
+    ⋆      ✧   ✦      ⋆       ✧
+    ✦      ⋆   ✧       ✦      ⋆
+    ✧   ⋆       ✦   ✧       ⋆
+    ⋆      ✦       ✧      ✦";
+
+    white-space: pre-wrap;
+
+    position: fixed;
+
+    inset: 0;
+
+    color: rgba(255,255,255,.75);
+
+    font-size: 15px;
+
+    line-height: 90px;
+
+    letter-spacing: 25px;
+
+    pointer-events: none;
+
+    z-index: 0;
+
+    animation: stars 5s ease-in-out infinite alternate;
+}
+
+@keyframes stars {
+
+    from {
+        opacity: .45;
+    }
+
+    to {
+        opacity: .9;
+    }
+}
+
+
+/* =========================================
+   PAGE 1
+========================================= */
+
+#opening {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    transition: opacity .6s ease;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+.mail-title {
+
+    font-size: clamp(34px, 9vw, 65px);
+
+    letter-spacing: 2px;
+
+    margin-bottom: 50px;
+
+    font-weight: normal;
+
+    color: #173b56;
+
+    text-shadow:
+        2px 3px rgba(255,255,255,.4);
+}
+
+
+.mail-subtitle {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 14px;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    margin-top: 35px;
+
+    opacity: .7;
+}
+
+
+/* =========================================
+   BLUE MAIL BOX
+========================================= */
+
+.box-wrapper {
+
+    cursor: pointer;
+
+    position: relative;
+
+    width: 230px;
+
+    height: 190px;
+
+    animation: float 3s ease-in-out infinite;
+}
+
+
+.box {
+
+    position: absolute;
+
+    left: 20px;
+
+    bottom: 10px;
+
+    width: 190px;
+
+    height: 125px;
+
+    background: #5b91b8;
+
+    border: 3px solid #376b91;
+
+    box-shadow:
+        8px 10px 0 rgba(30,70,100,.18);
+}
+
+
+.box::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    top: 0;
+
+    width: 50%;
+
+    height: 100%;
+
+    background: rgba(255,255,255,.08);
+}
+
+
+.box::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 0;
+
+    height: 100%;
+
+    width: 3px;
+
+    background: rgba(30,70,100,.25);
+}
+
+
+.box-flap {
+
+    position: absolute;
+
+    width: 190px;
+
+    height: 90px;
+
+    left: 20px;
+
+    top: 5px;
+
+    background: #75a9ca;
+
+    border: 3px solid #376b91;
+
+    transform:
+        perspective(400px)
+        rotateX(58deg);
+
+    transform-origin: bottom;
+
+    z-index: 2;
+}
+
+
+.box-tape {
+
+    position: absolute;
+
+    width: 38px;
+
+    height: 125px;
+
+    left: 96px;
+
+    bottom: 10px;
+
+    background: rgba(205,235,250,.45);
+
+    z-index: 3;
+}
+
+
+.box-label {
+
+    position: absolute;
+
+    z-index: 5;
+
+    left: 58px;
+
+    top: 75px;
+
+    width: 115px;
+
+    padding: 8px;
+
+    background: #e9f5fc;
+
+    border: 1px solid #9fc7df;
+
+    color: #244e69;
+
+    font-family: "Courier New", monospace;
+
+    font-size: 12px;
+
+    transform: rotate(-3deg);
+
+}
+
+
+@keyframes float {
+
+    0%,100% {
+
+        transform:
+            translateY(0)
+            rotate(-1deg);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-10px)
+            rotate(1deg);
+
+    }
+
+}
+
+
+/* =========================================
+   PAGE 2
+========================================= */
+
+#contents {
+
+    display: none;
+
+    min-height: 100vh;
+
+    padding: 35px 20px 80px;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+.contents-header {
+
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+
+.contents-header h1 {
+
+    font-size: 34px;
+
+    font-weight: normal;
+
+    color: #173b56;
+}
+
+
+.contents-header p {
+
+    margin-top: 8px;
+
+    font-family: "Courier New", monospace;
+
+    font-size: 12px;
+
+    opacity: .65;
+}
+
+
+.goodies {
+
+    width: min(700px, 100%);
+
+    margin: 30px auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    grid-auto-rows: 180px;
+
+    gap: 35px;
+
+    padding: 30px;
+
+    align-items: center;
+
+    justify-items: center;
+}
+
+
+/* =========================================
+   GOODIES
+========================================= */
+
+.goodie {
+
+    position: relative;
+
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+
+    cursor: pointer;
+
+    transition:
+        transform .25s ease;
+
+    user-select: none;
+
+    z-index: 2;
+}
+
+
+.goodie:hover {
+
+    transform:
+        scale(1.08)
+        rotate(0deg) !important;
+}
+
+
+/* =========================================
+   TYPEWRITER
+========================================= */
+
+.typewriter {
+
+    width: 170px;
+
+    height: 120px;
+
+    background: #315d78;
+
+    border-radius:
+        15px 15px 8px 8px;
+
+    transform: rotate(-6deg);
+
+    box-shadow:
+        6px 7px 0 rgba(30,70,100,.2);
+}
+
+
+.typewriter-paper {
+
+    position: absolute;
+
+    width: 105px;
+
+    height: 65px;
+
+    left: 33px;
+
+    top: -32px;
+
+    background: #eaf6fc;
+
+    border: 1px solid #a8c9dc;
+
+    transform: rotate(2deg);
+}
+
+
+.typewriter-paper::after {
+
+    content: "I just wanted...";
+
+    position: absolute;
+
+    left: 8px;
+
+    top: 12px;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 8px;
+
+    color: #315d78;
+}
+
+
+.keys {
+
+    position: absolute;
+
+    bottom: 13px;
+
+    left: 15px;
+
+    right: 15px;
+
+    display: flex;
+
+    justify-content:
+        space-around;
+}
+
+
+.keys span {
+
+    width: 12px;
+
+    height: 12px;
+
+    border-radius: 50%;
+
+    background: #8eabbc;
+}
+
+
+/* =========================================
+   POLAROID
+========================================= */
+
+.polaroid {
+
+    width: 145px;
+
+    height: 175px;
+
+    background: #edf8fd;
+
+    padding:
+        10px 10px 30px;
+
+    box-shadow:
+        5px 7px 10px
+        rgba(30,70,100,.2);
+
+    transform: rotate(8deg);
+}
+
+
+.photo-placeholder {
+
+    width: 100%;
+
+    height: 125px;
+
+    background: #9fc8df;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #41677f;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 11px;
+}
+
+
+/* =========================================
+   CD
+========================================= */
+
+.cd {
+
+    width: 125px;
+
+    height: 125px;
+
+    border-radius: 50%;
+
+    background:
+        conic-gradient(
+            #e8f5fb,
+            #82b4d2,
+            #d9edf7,
+            #6499bb,
+            #e8f5fb
+        );
+
+    box-shadow:
+        5px 7px 10px
+        rgba(30,70,100,.25);
+
+    transform: rotate(-12deg);
+}
+
+
+.cd::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 28px;
+
+    height: 28px;
+
+    border-radius: 50%;
+
+    background: #9bc8df;
+
+    left: 48px;
+
+    top: 48px;
+
+    border:
+        2px solid #477895;
+}
+
+
+/* =========================================
+   CAMCORDER
+========================================= */
+
+.camcorder {
+
+    width: 145px;
+
+    height: 95px;
+
+    background: #345d75;
+
+    border-radius: 15px;
+
+    transform: rotate(7deg);
+
+    box-shadow:
+        5px 7px 0
+        rgba(30,70,100,.2);
+}
+
+
+.camcorder::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 45px;
+
+    height: 45px;
+
+    border-radius: 50%;
+
+    background: #203f52;
+
+    border:
+        7px solid #688ba0;
+
+    left: 12px;
+
+    top: 23px;
+}
+
+
+.camcorder::after {
+
+    content: "";
+
+    position: absolute;
+
+    right: -38px;
+
+    top: 27px;
+
+    border-left:
+        40px solid #3f6d87;
+
+    border-top:
+        20px solid transparent;
+
+    border-bottom:
+        20px solid transparent;
+}
+
+
+/* =========================================
+   DRAWING
+========================================= */
+
+.drawing {
+
+    width: 135px;
+
+    height: 170px;
+
+    background: #edf8fd;
+
+    border:
+        1px solid #a9c9da;
+
+    box-shadow:
+        5px 7px 9px
+        rgba(30,70,100,.18);
+
+    transform: rotate(-5deg);
+
+    padding: 15px;
+}
+
+
+.drawing-lines {
+
+    height: 100%;
+
+    border:
+        2px solid #4e7187;
+
+    position: relative;
+}
+
+
+.house {
+
+    position: absolute;
+
+    width: 35px;
+
+    height: 27px;
+
+    border:
+        2px solid #4e7187;
+
+    bottom: 35px;
+
+    left: 10px;
+}
+
+
+.house::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 25px;
+
+    height: 25px;
+
+    border-left:
+        2px solid #4e7187;
+
+    border-top:
+        2px solid #4e7187;
+
+    transform: rotate(45deg);
+
+    top: -14px;
+
+    left: 3px;
+}
+
+
+.house.two {
+
+    left: auto;
+
+    right: 10px;
+}
+
+
+/* =========================================
+   COUPON
+========================================= */
+
+.coupon {
+
+    width: 145px;
+
+    height: 75px;
+
+    background: #dceff8;
+
+    border:
+        2px dashed #527c96;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    color: #28526d;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 13px;
+
+    transform: rotate(-4deg);
+}
+
+
+/* =========================================
+   LABELS
+========================================= */
+
+.goodie-label {
+
+    position: absolute;
+
+    top:
+        calc(100% + 7px);
+
+    width: 100%;
+
+    text-align: center;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 10px;
+
+    color: #315d78;
+
+    opacity: .7;
+}
+
+
+/* =========================================
+   MODAL
+========================================= */
+
+#modal {
+
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(25,65,90,.58);
+
+    z-index: 100;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+}
+
+
+.modal-box {
+
+    position: relative;
+
+    width:
+        min(500px, 100%);
+
+    max-height: 85vh;
+
+    overflow-y: auto;
+
+    background: #eaf6fc;
+
+    padding: 35px;
+
+    box-shadow:
+        10px 12px 0
+        rgba(20,60,85,.2);
+
+    border:
+        1px solid #9fc5d9;
+
+    animation:
+        modalIn .3s ease;
+}
+
+
+@keyframes modalIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(.9)
+            rotate(-2deg);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1)
+            rotate(0);
+
+    }
+}
+
+
+.close {
+
+    position: absolute;
+
+    right: 15px;
+
+    top: 10px;
+
+    font-size: 25px;
+
+    cursor: pointer;
+
+    font-family: Arial, sans-serif;
+
+    color: #315d78;
+}
+
+
+.modal-title {
+
+    font-size: 28px;
+
+    font-weight: normal;
+
+    margin-bottom: 20px;
+
+    color: #173b56;
+}
+
+
+.modal-text {
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    line-height: 1.8;
+
+    white-space: pre-line;
+
+    color: #315d78;
+}
+
+
+.modal-media {
+
+    width: 100%;
+
+    max-height: 55vh;
+
+    object-fit: contain;
+
+    margin-top: 15px;
+}
+
+
+audio,
+video {
+
+    width: 100%;
+
+    margin-top: 15px;
+}
+
+
+.location-button {
+
+    display: inline-block;
+
+    margin-top: 20px;
+
+    padding: 12px 18px;
+
+    background: #315d78;
+
+    color: #edf8fd;
+
+    text-decoration: none;
+
+    font-family:
+        "Courier New",
+        monospace;
+}
+
+
+.coupon-reveal {
+
+    border:
+        2px dashed #527c96;
+
+    padding: 25px;
+
+    text-align: center;
+
+    margin-top: 10px;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    color: #315d78;
+}
+
+
+.coupon-code {
+
+    font-size: 24px;
+
+    margin-top: 15px;
+
+    letter-spacing: 3px;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .goodies {
+
+        width: 100%;
+
+        margin: 20px auto;
+
+        padding:
+            25px 10px 50px;
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        grid-auto-rows: 190px;
+
+        gap: 45px 10px;
+
+        align-items: center;
+
+        justify-items: center;
+    }
+
+
+    .goodie {
+
+        position: relative;
+
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        bottom: auto !important;
+
+        transform: scale(.82);
+    }
+
+
+    .typewriter {
+
+        transform:
+            scale(.82)
+            rotate(-6deg);
+    }
+
+
+    .polaroid {
+
+        transform:
+            scale(.82)
+            rotate(8deg);
+    }
+
+
+    .cd {
+
+        transform:
+            scale(.82)
+            rotate(-12deg);
+    }
+
+
+    .camcorder {
+
+        transform:
+            scale(.82)
+            rotate(7deg);
+    }
+
+
+    .drawing {
+
+        transform:
+            scale(.82)
+            rotate(-5deg);
+    }
+
+
+    .coupon {
+
+        transform:
+            scale(.82)
+            rotate(-4deg);
+    }
+
+
+    .modal-box {
+
+        padding: 28px 22px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     PAGE 1
+========================================= -->
+
+<section id="opening">
+
+    <h1 class="mail-title">
+        You've got mail
+    </h1>
+
+
+    <div
+        class="box-wrapper"
+        onclick="openMail()"
+    >
+
+        <div class="box-flap"></div>
+
+
+        <div class="box">
+
+            <div class="box-tape"></div>
+
+
+            <div class="box-label">
+
+                TO:
+                <span id="recipientName">
+                    NAME
+                </span>
+
+                <br>
+
+                FROM:
+                <span id="senderName">
+                    AMNAAA
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <p class="mail-subtitle">
+        tap to open
+    </p>
+
+</section>
+
+
+
+<!-- =========================================
+     PAGE 2
+========================================= -->
+
+<section id="contents">
+
+
+    <div class="contents-header">
+
+        <h1>
+            A little something for you
+        </h1>
+
+        <p>
+            tap around — everything has something inside
+        </p>
+
+    </div>
+
+
+
+    <div class="goodies">
+
+
+        <!-- TYPEWRITER -->
+
+        <div
+            class="goodie typewriter"
+            onclick="showNote()"
+        >
+
+            <div class="typewriter-paper"></div>
+
+
+            <div class="keys">
+
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </div>
+
+
+            <div class="goodie-label">
+                a little note
+            </div>
+
+        </div>
+
+
+
+        <!-- POLAROID -->
+
+        <div
+            class="goodie polaroid"
+            onclick="showPhoto()"
+        >
+
+            <div class="photo-placeholder">
+                YOUR PHOTO
+            </div>
+
+
+            <div class="goodie-label">
+                us
+            </div>
+
+        </div>
+
+
+
+        <!-- CD -->
+
+        <div
+            class="goodie cd"
+            onclick="showSong()"
+        >
+
+            <div class="goodie-label">
+                press play
+            </div>
+
+        </div>
+
+
+
+        <!-- CAMCORDER -->
+
+        <div
+            class="goodie camcorder"
+            onclick="showVideo()"
+        >
+
+            <div class="goodie-label">
+                watch this
+            </div>
+
+        </div>
+
+
+
+        <!-- DRAWING -->
+
+        <div
+            class="goodie drawing"
+            onclick="showDrawing()"
+        >
+
+            <div class="drawing-lines">
+
+                <div class="house"></div>
+
+                <div class="house two"></div>
+
+            </div>
+
+
+            <div class="goodie-label">
+                something I drew
+            </div>
+
+        </div>
+
+
+
+        <!-- COUPON -->
+
+        <div
+            class="goodie coupon"
+            onclick="showCoupon()"
+        >
+
+            FREE HUGS
+            <br>
+            FOREVER
+
+
+            <div class="goodie-label">
+                redeem me
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     MODAL
+========================================= -->
+
+<div
+    id="modal"
+    onclick="closeOutside(event)"
+>
+
+    <div class="modal-box">
+
+
+        <span
+            class="close"
+            onclick="closeModal()"
+        >
+            ×
+        </span>
+
+
+        <div id="modalContent"></div>
+
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+
+/* =========================================
+   YOUR CONTENT
+========================================= */
+
+const CONTENT = {
+
+
+    recipient:
+        "LUJAIN🖤",
+
+
+    sender:
+        "HUDAA",
+
+
+    note: `
+
+You’re my blue
+like the ocean deep and endless
+like the sky quiet and infinite
+
+Somewhere between the waves and clouds,
+I found a color that feels like you
+and now, whenever I see blue
+a little part of me thinks of you💙
+
+    `,
+
+
+    photo:
+        "https://cdn.phototourl.com/free/2026-08-18-3957bbed-c7d4-4365-9c04-a4066d3dbdcd.jpg",
+
+
+    song:
+        "https://open.spotify.com/track/6yZv0Nl6BXABbXoPVpfF5y?si=ZxBFr5meQ4yKx8SJYeI-UA&utm_source=copy-link",
+
+
+    video:
+        “https://youtu.be/1zQOHsos2yY",
+
+
+    drawing:
+        "jpg",
+
+
+    coupon: `
+FREE COUPON FOR YAPPING FOREVER
+
+No expiry date.
+No cancellation.
+Redeem whenever you want.
+
+CODE: STARS
+    `
+
+};
+
+
+
+/* =========================================
+   INITIAL SETUP
+========================================= */
+
+document.getElementById("recipientName").textContent =
+    CONTENT.recipient;
+
+
+document.getElementById("senderName").textContent =
+    CONTENT.sender;
+
+
+
+/* =========================================
+   OPEN MAIL
+========================================= */
+
+function openMail() {
+
+    const opening =
+        document.getElementById("opening");
+
+
+    opening.style.opacity =
+        "0";
+
+
+    setTimeout(() => {
+
+
+        opening.style.display =
+            "none";
+
+
+        const contents =
+            document.getElementById("contents");
+
+
+        contents.style.display =
+            "block";
+
+
+    }, 600);
+
+}
+
+
+
+/* =========================================
+   MODAL
+========================================= */
+
+function openModal(content) {
+
+    document.getElementById("modalContent").innerHTML =
+        content;
+
+
+    document.getElementById("modal").style.display =
+        "flex";
+
+}
+
+
+function closeModal() {
+
+    document.getElementById("modal").style.display =
+        "none";
+
+
+    document.getElementById("modalContent").innerHTML =
+        "";
+
+}
+
+
+function closeOutside(event) {
+
+    if (
+        event.target.id === "modal"
+    ) {
+
+        closeModal();
+
+    }
+
+}
+
+
+
+/* =========================================
+   NOTE
+========================================= */
+
+function showNote() {
+
+    openModal(`
+
+        <h2 class="modal-title">
+            A little note
+        </h2>
+
+
+        <div class="modal-text">
+
+            ${CONTENT.note}
+
+        </div>
+
+    `);
+
+}
+
+
+
+/* =========================================
+   PHOTO
+========================================= */
+
+function showPhoto() {
+
+    openModal(`
+
+        <h2 class="modal-title">
+            One of my favourites
+        </h2>
+
+
+        <img
+            src="${CONTENT.photo}"
+            class="modal-media"
+            alt="Our photo"
+        >
+
+    `);
+
+}
+
+
+
+/* =========================================
+   SONG
+========================================= */
+
+function showSong() {
+
+    window.open(
+        CONTENT.song,
+        "_blank"
+    );
+
+}
+
+
+
+/* =========================================
+   VIDEO
+========================================= */
+
+function showVideo() {
+
+    /*
+       YouTube links cannot be played
+       directly inside a normal <video> tag.
+       This opens the video properly.
+    */
+
+    window.open(
+        CONTENT.video,
+        "_blank"
+    );
+
+}
+
+
